@@ -1,80 +1,74 @@
-﻿using System;
+﻿//-------------------------------------------
+//9 Write a C# program to create a clock, display the current time, and
+//increment it by one second.
 
-namespace Task9Application
-{
-    // Clock class stores and manages time
-    class ClockTask9
+using System;
+
+namespace Lab3
+{                                   //9
+    class Clock
     {
-        // Private data members
         private int hour;
         private int minute;
         private int second;
 
-        // Parameterized constructor
-        // Initializes the clock with the given time
-        public ClockTask9(int hour, int minute, int second)
+        // Default Constructor
+        public Clock()
         {
-            this.hour = hour;
-            this.minute = minute;
-            this.second = second;
+            hour = 12;
+            minute = 0;
+            second = 0;
         }
 
-        // Method to display the current time
-        public void DisplayTime()
+        // Parameterized Constructor
+        public Clock(int h, int m, int s)
         {
-            Console.WriteLine("{0:D2}:{1:D2}:{2:D2}",
-                hour, minute, second);
+            hour = h;
+            minute = m;
+            second = s;
         }
 
-        // Method to increment the time by one second
-        public void IncrementSecond()
+        public void Increment()
         {
             second++;
 
-            // When seconds reach 60, reset and increase minute
             if (second == 60)
             {
                 second = 0;
                 minute++;
-            }
 
-            // When minutes reach 60, reset and increase hour
-            if (minute == 60)
-            {
-                minute = 0;
-                hour++;
-            }
+                if (minute == 60)
+                {
+                    minute = 0;
+                    hour++;
 
-            // When hour reaches 24, start from 00
-            if (hour == 24)
-            {
-                hour = 0;
+                    if (hour == 24)
+                        hour = 0;
+                }
             }
         }
-    }
 
-    // Test class
-    class TestClockTask9
-    {
-        static void Main(string[] args)
+        public void Display()
         {
-            // Create clock object with initial time
-            ClockTask9 clock = new ClockTask9(11, 59, 59);
-
-            // Display original time
-            Console.WriteLine("Current Time:");
-            clock.DisplayTime();
-
-            // Increment time by one second
-            clock.IncrementSecond();
-
-            // Display updated time
-            Console.WriteLine("After Incrementing One Second:");
-            clock.DisplayTime();
-
-            Console.ReadKey();
+            Console.WriteLine("Time : {0:D2}:{1:D2}:{2:D2}", hour, minute, second);
         }
     }
 
+    internal class Pro9
+    {
+        static void Main()
+        {
+            Clock c = new Clock(10, 59, 59);
 
+            Console.WriteLine("Current Time");
+            c.Display();
+
+            c.Increment();
+
+            Console.WriteLine("After Increment");
+            c.Display();
+
+            Console.Read();
+        }
+    }
 }

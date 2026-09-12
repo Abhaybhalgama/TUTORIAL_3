@@ -1,86 +1,50 @@
-﻿using System;
+﻿//15.A program to inherit personal information into a student class and display complete details.
 
-namespace Task15Application
+
+using System;
+
+class Person
 {
-    // Base class containing common personal information
-    class PersonTask15
+    public string Name;
+    public int Age;
+    public string Address;
+
+    public Person(string name, int age, string address)
     {
-        // Protected members can be accessed by derived classes
-        protected string name;
-        protected int age;
-        protected string address;
+        Name = name;
+        Age = age;
+        Address = address;
+    }
+}
 
-        // Constructor of base class
-        public PersonTask15(string name, int age, string address)
-        {
-            this.name = name;
-            this.age = age;
-            this.address = address;
-        }
+class Student : Person
+{
+    public int RollNo;
+    public string Course;
 
-        // Method to display personal information
-        public void DisplayPersonalDetails()
-        {
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Age: " + age);
-            Console.WriteLine("Address: " + address);
-        }
+    public Student(string name, int age, string address, int rollNo, string course)
+        : base(name, age, address)
+    {
+        RollNo = rollNo;
+        Course = course;
     }
 
-    // Student class inherits PersonTask15
-    class StudentTask15 : PersonTask15
+    public void DisplayDetails()
     {
-        // Student-specific data members
-        private int enrollmentNo;
-        private string course;
-
-        // Constructor of derived class
-        public StudentTask15(
-            string name,
-            int age,
-            string address,
-            int enrollmentNo,
-            string course)
-            : base(name, age, address)
-        {
-            this.enrollmentNo = enrollmentNo;
-            this.course = course;
-        }
-
-        // Method to display complete student information
-        public void DisplayStudentDetails()
-        {
-            Console.WriteLine("\n--- Student Details ---");
-
-            // Call inherited method
-            DisplayPersonalDetails();
-
-            // Display Student-specific information
-            Console.WriteLine("Enrollment No: " + enrollmentNo);
-            Console.WriteLine("Course: " + course);
-        }
+        Console.WriteLine("Name    : " + Name);
+        Console.WriteLine("Age     : " + Age);
+        Console.WriteLine("Address : " + Address);
+        Console.WriteLine("Roll No : " + RollNo);
+        Console.WriteLine("Course  : " + Course);
     }
+}
 
-    // Test class
-    class TestStudentTask15
+class Program
+{
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            // Create Student object
-            StudentTask15 student = new StudentTask15(
-                "Rahul",
-                20,
-                "Ahmedabad",
-                101,
-                "BCA"
-            );
+        Student s = new Student("Rahul", 20, "Rajkot", 101, "BCA");
 
-            // Display complete details
-            student.DisplayStudentDetails();
-
-            Console.ReadKey();
-        }
+        s.DisplayDetails();
     }
-
-
 }

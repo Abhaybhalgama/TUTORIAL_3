@@ -1,52 +1,42 @@
-﻿using System;
+﻿
+using System;
 
-namespace StudentApplication
+namespace StudentDemo
 {
-    // Student class
+
     class Student1
     {
-        // Private data members
-        private int enrollmentNo;
-        private string name;
-        private int age;
-        private string course;
+        public int RollNo;
+        public string Name;
 
-        // Parameterized constructor
-        public Student1(int enrollmentNo, string name, int age, string course)
+        public Student1()
         {
-            // 'this' refers to the current object's data members
-            this.enrollmentNo = enrollmentNo;
-            this.name = name;
-            this.age = age;
-            this.course = course;
+            RollNo = 0;
+            Name = "Unknown";
         }
 
-        // Method to display student details
+        public Student1(int r, string n)
+        {
+            RollNo = r;
+            Name = n;
+        }
+
         public void Display()
         {
-            Console.WriteLine("Enrollment No: " + enrollmentNo);
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Age: " + age);
-            Console.WriteLine("Course: " + course);
-            Console.WriteLine("-------------------------");
+            Console.WriteLine("Roll No : " + RollNo);
+            Console.WriteLine("Name    : " + Name);
         }
     }
 
-    // TestStudent class
-    class TestStudent
+    class TestStudent1
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            // Creating five Student objects
-            Student s1 = new Student(101, "Rahul", 20, "BCA");
-            Student s2 = new Student(102, "Priya", 21, "MCA");
-            Student s3 = new Student(103, "Amit", 20, "BSc IT");
-            Student s4 = new Student(104, "Neha", 22, "BCA");
-            Student s5 = new Student(105, "Karan", 21, "MCA");
-
-            // Display details of all five students
-            Console.WriteLine("STUDENT DETAILS");
-            Console.WriteLine("=========================");
+            Student s1 = new Student(101, "Rahul");
+            Student s2 = new Student(102, "Rajesh");
+            Student s3 = new Student(103, "Ritesh");
+            Student s4 = new Student(104, "Rakesh");
+            Student s5 = new Student(105, "Raj");
 
             s1.Display();
             s2.Display();
@@ -54,9 +44,7 @@ namespace StudentApplication
             s4.Display();
             s5.Display();
 
-            Console.ReadKey();
+            Console.ReadLine();
         }
     }
-
-
 }

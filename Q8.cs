@@ -1,65 +1,52 @@
-﻿using System;
+﻿//8. A program to accept and display student details using a class, objects, constructors, and methods.
 
-namespace Task8Application
+using System;
+
+namespace Lab3
 {
-    // Student class for storing student information
-    class StudentTask8
+    class Student                                       //8
     {
-        // Private data members
         private int enrollmentNo;
         private string name;
-        private int age;
         private string course;
 
-        // Parameterized constructor
-        // Initializes student details
-        public StudentTask8(int enrollmentNo, string name, int age, string course)
+        // Parameterized Constructor
+        public Student(int eno, string nm, string crs)
         {
-            this.enrollmentNo = enrollmentNo;
-            this.name = name;
-            this.age = age;
-            this.course = course;
+            enrollmentNo = eno;
+            name = nm;
+            course = crs;
         }
 
-        // Method to display student details
-        public void DisplayDetails()
+        // Display Method
+        public void Display()
         {
-            Console.WriteLine("\n--- Student Details ---");
-            Console.WriteLine("Enrollment No: " + enrollmentNo);
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Age: " + age);
-            Console.WriteLine("Course: " + course);
+            Console.WriteLine("\nStudent Details");
+            Console.WriteLine("Enrollment No : " + enrollmentNo);
+            Console.WriteLine("Name          : " + name);
+            Console.WriteLine("Course        : " + course);
         }
     }
-
-    // Test class containing Main method
-    class TestStudentTask8
+    class Pro8
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            // Accept student details from the user
             Console.Write("Enter Enrollment No: ");
-            int enrollmentNo = Convert.ToInt32(Console.ReadLine());
+            int eno = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Enter Name: ");
             string name = Console.ReadLine();
 
-            Console.Write("Enter Age: ");
-            int age = Convert.ToInt32(Console.ReadLine());
-
             Console.Write("Enter Course: ");
             string course = Console.ReadLine();
 
-            // Create Student object using constructor
-            StudentTask8 student =
-                new StudentTask8(enrollmentNo, name, age, course);
+            Student s = new Student(eno, name, course);
 
-            // Call method to display details
-            student.DisplayDetails();
+            s.Display();
 
-            Console.ReadKey();
+            Console.Read();
         }
     }
-
-
 }
+
+

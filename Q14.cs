@@ -1,81 +1,76 @@
-﻿using System;
+﻿//14.A program to restrict direct access to employee salary while allowing 
+//    controlled access through public methods.
 
-namespace Task14Application
+//(Inheritance)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TUTORIAL_3
 {
-    // Employee class demonstrates private and public access
-    class EmployeeTask14
+    using System;
+
+    class Employee
     {
-        // Public data members
-        public int employeeId;
-        public string employeeName;
+        private double salary;   // Direct access is restricted
 
-        // Private salary cannot be accessed directly outside this class
-        private double salary;
-
-        // Constructor to initialize employee details
-        public EmployeeTask14(int employeeId, string employeeName, double salary)
+        // Constructor
+        public Employee(double salary)
         {
-            this.employeeId = employeeId;
-            this.employeeName = employeeName;
-
-            // Store salary using private data member
             this.salary = salary;
         }
 
-        // Public method to set/update salary
-        // Provides controlled access to private salary
-        public void SetSalary(double newSalary)
-        {
-            if (newSalary >= 0)
-            {
-                salary = newSalary;
-            }
-            else
-            {
-                Console.WriteLine("Salary cannot be negative.");
-            }
-        }
-
         // Public method to get salary
-        // Provides controlled access to private salary
         public double GetSalary()
         {
             return salary;
         }
 
-        // Method to display employee details
-        public void Display()
+        // Public method to set salary with validation
+        public void SetSalary(double salary)
         {
-            Console.WriteLine("\n--- Employee Details ---");
-            Console.WriteLine("Employee ID: " + employeeId);
-            Console.WriteLine("Employee Name: " + employeeName);
-            Console.WriteLine("Salary: " + GetSalary());
+            if (salary > 0)
+            {
+                this.salary = salary;
+            }
+            else
+            {
+                Console.WriteLine("Invalid salary!");
+            }
         }
     }
 
-    // Test class
-    class TestEmployeeTask14
+    // Inheritance
+    class Manager : Employee
     {
-        static void Main(string[] args)
+        public Manager(double salary) : base(salary)
         {
-            // Create Employee object
-            EmployeeTask14 employee =
-                new EmployeeTask14(101, "Rahul", 30000);
+        }
 
-            // Display employee information
-            employee.Display();
-
-            Console.WriteLine();
-
-            // Update salary through public method
-            employee.SetSalary(35000);
-
-            Console.WriteLine("After Salary Update:");
-            Console.WriteLine("Salary: " + employee.GetSalary());
-
-            Console.ReadKey();
+        public void DisplaySalary()
+        {
+            Console.WriteLine("Employee Salary: " + GetSalary());
         }
     }
 
+    class Program
+    {
+        static void Main()
+        {
+            Manager m = new Manager(50000);
 
+            // Controlled access through public methods
+            m.DisplaySalary();
+
+            m.SetSalary(60000);
+            m.DisplaySalary();
+
+            // Not allowed:
+            // m.salary = 70000;
+            // Error: 'Employee.salary' is inaccessible due to its protection level
+        }
+    }
 }
